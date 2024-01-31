@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiPizzeriaApp.MainView"
+             xmlns:viewModel="clr-namespace:MauiPizzeriaApp.ViewModels"
+             x:DataType="viewModel:MainViewModel">
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value="Black" />
+            <Setter Property="HorizontalTextAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="WidthRequest" Value="200"/>
+            <Setter Property="TextColor" Value="Black"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <VerticalStackLayout BackgroundColor="LightYellow"
+                         Padding="15">
+        <Label Text="Mo's Pizzeria"
+               TextColor="Black"
+               FontSize="Title"
+               SemanticProperties.HeadingLevel="Level1"
+               SemanticProperties.Description="Mo's Pizzeria"
+               HorizontalTextAlignment="Center"
+               Margin="15">
+        </Label>
+        <Button Text="Se items"
+                SemanticProperties.Description="Button that navigates to the see items page"
+                Command="{Binding ShowSeeItemsPageCommand}">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+                        Offset="5,5"
+                        Radius="10"
+                        Opacity="0.5">
+                </Shadow>
+            </Button.Shadow>
+        </Button>
+        <Button Text="Add pizza"
+                SemanticProperties.Description="Button that navigates to the add pizza page"
+                Command="{Binding ShowAddPizzaPageCommand}">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+                        Offset="5,5"
+                        Radius="10"
+                        Opacity="0.5">
+                </Shadow>
+            </Button.Shadow>
+        </Button>
+    </VerticalStackLayout>
+</ContentPage>

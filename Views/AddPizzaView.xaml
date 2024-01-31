@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="MauiPizzeriaApp.Views.AddPizzaView"
+             Title="AddPizzaView"
+             xmlns:viewModel="clr-namespace:MauiPizzeriaApp.ViewModels"
+             x:DataType="viewModel:AddPizzaViewModel">
+    <ContentPage.Resources>
+        <Style x:Key="ValidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Black" />
+        </Style>
+        <Style x:Key="InvalidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Red" />
+        </Style>
+    </ContentPage.Resources>
+
+    <VerticalStackLayout BackgroundColor="LightYellow">
+        <Label Text="Add a pizza"
+               TextColor="Black"
+               FontSize="Title"
+               SemanticProperties.HeadingLevel="Level1"
+               SemanticProperties.Description="Add a pizza"
+               HorizontalTextAlignment="Center"
+               Margin="15">
+        </Label>
+        <ScrollView>
+            <Grid RowDefinitions="*, *, *, *"
+                  ColumnDefinitions="*, *">
+                <Entry Grid.Row="0"
+                       Grid.Column="0"
+                       Placeholder="Name"
+                       BackgroundColor="Black"
+                       TextColor="White"
+                       Text="{Binding NewName}">
+                    <Entry.Behaviors>
+                        <toolkit:TextValidationBehavior InvalidStyle="{StaticResource InvalidEntryStyle}"
+                                                        ValidStyle="{StaticResource ValidEntryStyle}"
+                                                        Flags="ValidateOnValueChanged"
+                                                        MaximumLength="30" />
+                    </Entry.Behaviors>
+                </Entry>
+                <Entry Grid.Row="0"
+                       Grid.Column="1"
+                       Placeholder="Number"
+                       BackgroundColor="Black"
+                       TextColor="White"
+                       Text="{Binding NewNo}">
+                    <Entry.Behaviors>
+                        <toolkit:TextValidationBehavior InvalidStyle="{StaticResource InvalidEntryStyle}"
+                                                        ValidStyle="{StaticResource ValidEntryStyle}"
+                                                        Flags="ValidateOnValueChanged"
+                                                        MaximumLength="3"
+                                                        RegexPattern="^\d+$" />
+                    </Entry.Behaviors>
+                </Entry>
+                <Label Grid.Row="1"
+                       Grid.Column="0"
+                       Text="Price:"
+                       TextColor="Black"
+                       FontSize="Medium"
+                       HorizontalTextAlignment="End"
+                       Margin="15">
+                </Label>
+                <Entry Grid.Row="1"
+                       Grid.Column="1"
+                       Placeholder="Price"
+                       BackgroundColor="Black"
+                       TextColor="White"
+                       Text="{Binding NewPrice}">
+                </Entry>
+                <Editor Grid.Row="2"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Placeholder="Description"
+                        BackgroundColor="Black"
+                        TextColor="White"
+                        Text="{Binding NewDescription}">
+                    <Editor.Behaviors>
+                        <toolkit:TextValidationBehavior InvalidStyle="{StaticResource InvalidEntryStyle}"
+                                    ValidStyle="{StaticResource ValidEntryStyle}"
+                                    Flags="ValidateOnUnfocusing"
+                                    MaximumLength="120"/>
+                    </Editor.Behaviors>
+                </Editor>
+                <Button Grid.Row="3"
+                        Grid.Column="0"
+                        Text="Add"
+                        SemanticProperties.Description="Add"
+                        Command="{Binding AddPizzaCommand}">
+                    <Button.Shadow>
+                        <Shadow Brush="Black"
+                                Offset="5,5"
+                                Radius="10"
+                                Opacity="0.5">
+                        </Shadow>
+                    </Button.Shadow>
+                </Button>
+                <Button Grid.Row="3"
+                        Grid.Column="1"
+                        Text="Cancel"
+                        SemanticProperties.Description="Cancel"
+                        Command="{Binding CancelCommand}">
+                    <Button.Shadow>
+                        <Shadow Brush="Black"
+                                Offset="5,5"
+                                Radius="10"
+                                Opacity="0.5">
+                        </Shadow>
+                    </Button.Shadow>
+                </Button>
+            </Grid>
+        </ScrollView>
+    </VerticalStackLayout>
+
+</ContentPage>
